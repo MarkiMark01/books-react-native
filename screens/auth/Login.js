@@ -1,10 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 
 export const Login = () => {
   return (
     <View style={styles.main}>
-      <Text style={styles.titleText}>MY APP!!!</Text>
+      <View style={styles.form}>
+        <View>
+          <Text style={styles.titleText}>Email</Text>
+          <TextInput style={styles.input} />
+        </View>
+        <View style={{ marginTop: 5 }}>
+          <Text style={styles.titleText}>Password</Text>
+          <TextInput style={styles.input} secureTextEntry={true} />
+        </View>
+      </View>
     </View>
   );
 };
@@ -13,13 +22,25 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    minHeight: "100vh",
-    backgroundColor: "blue",
+    // alignItems: "center",
+    backgroundColor: "#001838",
   },
   titleText: {
-    fontSize: 28,
-    color: "#fff",
+    fontSize: 20,
+    color: "#F3D88E",
+  },
+  input: {
+    textAlign: "center",
+    borderWidth: 1,
+    borderColor: "#F3D88E",
+    color: "#F3D88E",
+    marginTop: 3,
+    borderRadius: 20,
+    height: 40,
+    fontSize: 18,
+    textDecorationLine: "none",
+  },
+  form: {
+    marginHorizontal: 20,
   },
 });
