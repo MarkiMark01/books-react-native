@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,24 +6,41 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
+  KeyboardAvoidingView,
 } from "react-native";
 
 export const Login = () => {
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
   return (
     <View style={styles.main}>
-      <View style={styles.form}>
-        <View>
-          <Text style={styles.titleText}>Email</Text>
-          <TextInput style={styles.input} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS == "android" ? "height" : "padding"}
+      >
+        <View
+          // style={{ ...styles.form, marginBottom: isShowKeyboard ? 200 : 50 }}
+          style={styles.form}
+        >
+          <View>
+            <Text style={styles.titleText}>Email</Text>
+            <TextInput
+              style={styles.input}
+              onFocus={() => setIsShowKeyboard(true)}
+            />
+          </View>
+          <View style={{ marginTop: 5 }}>
+            <Text style={styles.titleText}>Password</Text>
+            <TextInput
+              style={styles.input}
+              secureTextEntry={true}
+              onFocus={() => setIsShowKeyboard(true)}
+            />
+          </View>
+          <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
+            <Text style={styles.btnTitle}>Log In</Text>
+          </TouchableOpacity>
         </View>
-        <View style={{ marginTop: 5 }}>
-          <Text style={styles.titleText}>Password</Text>
-          <TextInput style={styles.input} secureTextEntry={true} />
-        </View>
-        <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
-          <Text style={styles.btnTitle}>Log In</Text>
-        </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -31,7 +48,7 @@ export const Login = () => {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     // alignItems: "center",
     backgroundColor: "#001838",
   },
@@ -52,6 +69,7 @@ const styles = StyleSheet.create({
   },
   form: {
     marginHorizontal: 20,
+    marginBottom: 20,
   },
   btn: {
     height: 40,
