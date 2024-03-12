@@ -7,41 +7,58 @@ import {
   TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 export const Login = () => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
+  };
+
   return (
-    <View style={styles.main}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "android" ? "height" : "padding"}
-      >
-        <View
-          // style={{ ...styles.form, marginBottom: isShowKeyboard ? 200 : 50 }}
-          style={styles.form}
+    <TouchableWithoutFeedback onPress={handleSubmit}>
+      <View style={styles.main}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "android" ? "" : "padding"}
         >
-          <View>
-            <Text style={styles.titleText}>Email</Text>
-            <TextInput
-              style={styles.input}
-              onFocus={() => setIsShowKeyboard(true)}
-            />
+          <View
+            // style={{ ...styles.form, marginBottom: isShowKeyboard ? 200 : 50 }}
+            style={styles.form}
+          >
+            <View style={styles.header}>
+              <Text style={styles.headerText}>Log In</Text>
+            </View>
+            <View>
+              <Text style={styles.titleText}>Email</Text>
+              <TextInput
+                style={styles.input}
+                onFocus={() => setIsShowKeyboard(true)}
+              />
+            </View>
+            <View style={{ marginTop: 5 }}>
+              <Text style={styles.titleText}>Password</Text>
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                onFocus={() => setIsShowKeyboard(true)}
+              />
+            </View>
+            <TouchableOpacity
+              style={styles.btn}
+              activeOpacity={0.8}
+              onPress={handleSubmit}
+            >
+              <Text style={styles.btnTitle}>Log In</Text>
+            </TouchableOpacity>
           </View>
-          <View style={{ marginTop: 5 }}>
-            <Text style={styles.titleText}>Password</Text>
-            <TextInput
-              style={styles.input}
-              secureTextEntry={true}
-              onFocus={() => setIsShowKeyboard(true)}
-            />
-          </View>
-          <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
-            <Text style={styles.btnTitle}>Log In</Text>
-          </TouchableOpacity>
-        </View>
-      </KeyboardAvoidingView>
-    </View>
+        </KeyboardAvoidingView>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -89,5 +106,13 @@ const styles = StyleSheet.create({
   },
   btnTitle: {
     fontSize: 22,
+  },
+  header: {
+    alignItems: "center",
+    marginBottom: 150,
+  },
+  headerText: {
+    fontSize: 30,
+    color: "#F3D88E",
   },
 });
