@@ -39,9 +39,16 @@ export const Login = () => {
         <KeyboardAvoidingView
           behavior={Platform.OS == "android" ? "" : "padding"}
         >
-          <View style={styles.form}>
+          <View
+            // style={styles.form}
+            style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 40 }}
+          >
             <View style={styles.header}>
               <Text style={styles.headerText}>Log In</Text>
+              <Text style={styles.headerText2}>
+                Log in now to unlock your exclusive access to
+              </Text>
+              <Text style={styles.headerText3}>content and offers</Text>
             </View>
             <View>
               <Text style={styles.titleText}>Email</Text>
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
   },
   form: {
     marginHorizontal: 20,
-    marginBottom: 20,
+    // marginBottom: 40,
   },
   btn: {
     height: 40,
@@ -123,11 +130,24 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginBottom: 150,
+    marginBottom: 120,
   },
   headerText: {
     fontSize: 30,
     color: "#F3D88E",
+    fontFamily: "salsa-regular",
+  },
+  headerText2: {
+    fontSize: 16,
+    color: "#F3D88E",
+    fontFamily: "salsa-regular",
+    textAlign: "justify",
+  },
+  headerText3: {
+    fontSize: 16,
+    color: "#F3D88E",
+    fontFamily: "salsa-regular",
+    textAlign: "justify",
   },
 });
 
