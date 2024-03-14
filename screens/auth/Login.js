@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
+  Dimensions,
 } from "react-native";
 
 const initialState = {
@@ -19,6 +20,26 @@ const initialState = {
 export const Login = () => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
+  const [dimensions, setDimensions] = useState(
+    Dimensions.get("window").width - 20 * 2
+  );
+
+  useEffect(() => {
+    const onChange = () => {
+      const width = Dimensions.get("window").width - 20 * 2;
+      setDimensions(width);
+    };
+
+    Dimensions.addEventListener("change", onChange);
+
+    return () => {
+      const removeListener =
+        Dimensions.removeEventListener || Dimensions.removeDimensionsListener;
+      if (removeListener) {
+        removeListener("change", onChange);
+      }
+    };
+  }, []);
 
   const handleEmail = (value) => {
     setState((prevState) => ({ ...prevState, email: value }));
@@ -41,7 +62,11 @@ export const Login = () => {
         >
           <View
             // style={styles.form}
-            style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 40 }}
+            style={{
+              ...styles.form,
+              marginBottom: isShowKeyboard ? 20 : 40,
+              width: dimensions,
+            }}
           >
             <View style={styles.header}>
               <Text style={styles.headerText}>Log In</Text>
@@ -74,7 +99,7 @@ export const Login = () => {
               activeOpacity={0.8}
               onPress={handleSubmit}
             >
-              <Text style={styles.btnTitle}>Log In</Text>
+              <Text style={styles.btnTitle}>Log in</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
@@ -89,10 +114,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     // alignItems: "center",
     backgroundColor: "#001838",
+    alignItems: "center",
   },
   titleText: {
     fontSize: 20,
     color: "#F3D88E",
+    fontFamily: "mt-m",
   },
   input: {
     textAlign: "center",
@@ -106,8 +133,8 @@ const styles = StyleSheet.create({
     textDecorationLine: "none",
   },
   form: {
-    marginHorizontal: 20,
-    // marginBottom: 40,
+    // marginHorizontal: 20,
+    marginBottom: 40,
   },
   btn: {
     height: 40,
@@ -127,6 +154,7 @@ const styles = StyleSheet.create({
   },
   btnTitle: {
     fontSize: 22,
+    fontFamily: "mt-b",
   },
   header: {
     alignItems: "center",
