@@ -1,10 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Login } from "./screens/auth/Login";
 import { Register } from "./screens/auth/Register";
 
 const AuthStack = createStackNavigator();
+const MainTab = createBottomTabNavigator();
 
 export const Navigation = () => {
   return (
