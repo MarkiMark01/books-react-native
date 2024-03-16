@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 const Books = () => {
   return <Text style={styles.container}>Books</Text>;
