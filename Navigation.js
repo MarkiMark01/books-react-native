@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { Login } from "./screens/auth/Login";
 import { Register } from "./screens/auth/Register";
@@ -10,8 +11,8 @@ import Books from "./screens/books/Books";
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
-const toggleRoute = (isAuth) => {
-  if (!isAuth) {
+const toggleRoute = (isLogin) => {
+  if (!isLogin) {
     return (
       <AuthStack.Navigator>
         <AuthStack.Screen
@@ -28,15 +29,28 @@ const toggleRoute = (isAuth) => {
     );
   }
   return (
-    <MainTab.Navigator>
-      <MainTab.Screen name="Books" component={Books} />
+    <MainTab.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarStyle: [{ display: "flex" }, null],
+      }}
+    >
+      <MainTab.Screen
+        name="Books"
+        component={Books}
+        options={{
+          tabBarIcon: ({ focused, size, color }) => (
+            <MaterialIcons name="my-library-books" size={size} color={color} />
+          ),
+        }}
+      />
     </MainTab.Navigator>
   );
 };
 
 export const Navigation = () => {
-  const isUserAuth = false;
-  const routing = toggleRoute(isUserAuth);
+  const isLogin = true;
+  const routing = toggleRoute(isLogin);
 
   return <NavigationContainer>{routing}</NavigationContainer>;
 };
