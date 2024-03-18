@@ -17,7 +17,7 @@ const initialState = {
   password: "",
 };
 
-export const Login = () => {
+export const Login = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   const [dimensions, setDimensions] = useState(
@@ -100,6 +100,18 @@ export const Login = () => {
               onPress={handleSubmit}
             >
               <Text style={styles.btnTitle}>Log in</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.btn}
+              activeOpacity={0.8}
+              // onPress={handleSubmit}
+            >
+              <Text
+                style={styles.btnTitle}
+                onPress={() => navigation.navigate("Register")}
+              >
+                Sign up
+              </Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
