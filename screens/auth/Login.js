@@ -104,14 +104,9 @@ export const Login = ({ navigation }) => {
             <TouchableOpacity
               style={styles.btn}
               activeOpacity={0.8}
-              // onPress={handleSubmit}
+              onPress={() => navigation.navigate("Register")}
             >
-              <Text
-                style={styles.btnTitle}
-                onPress={() => navigation.navigate("Register")}
-              >
-                Sign up
-              </Text>
+              <Text style={styles.btnTitle}>Sign up</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

@@ -18,7 +18,7 @@ const initialState = {
   name: "",
 };
 
-export const Register = () => {
+export const Register = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   const [dimensions, setDimensions] = useState(
@@ -68,7 +68,7 @@ export const Register = () => {
             // style={styles.form}
             style={{
               ...styles.form,
-              marginBottom: isShowKeyboard ? 20 : 40,
+              marginBottom: isShowKeyboard ? 20 : 30,
               width: dimensions,
             }}
           >
@@ -107,6 +107,13 @@ export const Register = () => {
               style={styles.btn}
               activeOpacity={0.8}
               onPress={handleSubmit}
+            >
+              <Text style={styles.btnTitle}>Sign up</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.btn}
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate("Login")}
             >
               <Text style={styles.btnTitle}>Log in</Text>
             </TouchableOpacity>
