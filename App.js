@@ -1,8 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
+import { Provider } from "react-redux";
 
 import { Navigation } from "./Navigation";
+import { store } from "./redux/store";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -17,8 +19,10 @@ export default function App() {
   }
   return (
     <>
-      {/* <StatusBar style="auto" barStyle="light-content" /> */}
-      <Navigation />
+      <Provider store={store}>
+        {/* <StatusBar style="auto" /> */}
+        <Navigation />
+      </Provider>
     </>
   );
 }
