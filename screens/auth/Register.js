@@ -11,6 +11,9 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
 } from "react-native";
+import { useDispatch } from "react-redux";
+
+import { signup } from "../../redux/auth/authOperations";
 
 const initialState = {
   email: "",
@@ -24,6 +27,8 @@ export const Register = ({ navigation }) => {
   const [dimensions, setDimensions] = useState(
     Dimensions.get("window").width - 20 * 2
   );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const onChange = () => {
@@ -49,23 +54,29 @@ export const Register = ({ navigation }) => {
     setState((prevState) => ({ ...prevState, password: value }));
   };
   const handleName = (value) => {
-    setState((prevState) => ({ ...prevState, pname: value }));
+    setState((prevState) => ({ ...prevState, name: value }));
   };
 
   const handleSubmit = () => {
+    dispatch(signup(state));
+    console.log("Форма була успішно надіслана:", state);
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    setState(initialState); // Reset form fields
+    setState(initialState);
   };
 
   return (
-    <TouchableWithoutFeedback onPress={handleSubmit}>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        setIsShowKeyboard(false);
+        Keyboard.dismiss();
+      }}
+    >
       <View style={styles.main}>
         <KeyboardAvoidingView
           behavior={Platform.OS == "android" ? "" : "padding"}
         >
           <View
-            // style={styles.form}
             style={{
               ...styles.form,
               marginBottom: isShowKeyboard ? 20 : 30,
@@ -80,7 +91,7 @@ export const Register = ({ navigation }) => {
               <TextInput
                 style={styles.input}
                 onFocus={() => setIsShowKeyboard(true)}
-                value={state.email}
+                value={state.name}
                 onChangeText={handleName}
               />
             </View>
@@ -177,8 +188,140 @@ const styles = StyleSheet.create({
     marginBottom: 120,
   },
   headerText: {
-    fontSize: 30,
+    fontSize: 36,
     color: "#F3D88E",
     fontFamily: "salsa-regular",
   },
 });
+
+// import React, { useState, useEffect } from "react";
+// import {
+//   View,
+//   Text,
+//   StyleSheet,
+//   TextInput,
+//   TouchableOpacity,
+//   Platform,
+//   KeyboardAvoidingView,
+//   Keyboard,
+//   TouchableWithoutFeedback,
+//   Dimensions,
+// } from "react-native";
+// import { useDispatch } from "react-redux";
+
+// import { signup } from "../../redux/auth/authOperations";
+
+// const initialState = {
+//   email: "",
+//   password: "",
+//   name: "",
+// };
+
+// export const Register = ({ navigation }) => {
+//   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+//   const [state, setState] = useState(initialState);
+//   const [dimensions, setDimensions] = useState(
+//     Dimensions.get("window").width - 20 * 2
+//   );
+
+//   const dispatch = useDispatch();
+
+//   useEffect(() => {
+//     const onChange = () => {
+//       const width = Dimensions.get("window").width - 20 * 2;
+//       setDimensions(width);
+//     };
+
+//     Dimensions.addEventListener("change", onChange);
+
+//     return () => {
+//       const removeListener =
+//         Dimensions.removeEventListener || Dimensions.removeDimensionsListener;
+//       if (removeListener) {
+//         removeListener("change", onChange);
+//       }
+//     };
+//   }, []);
+
+//   const handleEmail = (value) => {
+//     setState((prevState) => ({ ...prevState, email: value }));
+//   };
+//   const handlePassword = (value) => {
+//     setState((prevState) => ({ ...prevState, password: value }));
+//   };
+//   const handleName = (value) => {
+//     setState((prevState) => ({ ...prevState, name: value }));
+//   };
+
+//   const handleSubmit = () => {
+//     dispatch(signup(state));
+//     setIsShowKeyboard(false);
+//     Keyboard.dismiss();
+//     setState(initialState);
+//   };
+
+//   return (
+//     <TouchableWithoutFeedback onPress={handleSubmit}>
+//       <View style={styles.main}>
+//         <KeyboardAvoidingView
+//           behavior={Platform.OS == "android" ? "" : "padding"}
+//         >
+//           <View
+//             // style={styles.form}
+//             style={{
+//               ...styles.form,
+//               marginBottom: isShowKeyboard ? 20 : 30,
+//               width: dimensions,
+//             }}
+//           >
+//             <View style={styles.header}>
+//               <Text style={styles.headerText}>Sign up</Text>
+//             </View>
+//             <View>
+//               <Text style={styles.titleText}>Name</Text>
+//               <TextInput
+//                 style={styles.input}
+//                 onFocus={() => setIsShowKeyboard(true)}
+//                 value={state.name}
+//                 onChangeText={handleName}
+//               />
+//             </View>
+//             <View style={{ marginTop: 5 }}>
+//               <Text style={styles.titleText}>Email</Text>
+//               <TextInput
+//                 style={styles.input}
+//                 onFocus={() => setIsShowKeyboard(true)}
+//                 value={state.email}
+//                 onChangeText={handleEmail}
+//               />
+//             </View>
+//             <View style={{ marginTop: 5 }}>
+//               <Text style={styles.titleText}>Password</Text>
+//               <TextInput
+//                 style={styles.input}
+//                 secureTextEntry={true}
+//                 onFocus={() => setIsShowKeyboard(true)}
+//                 value={state.password}
+//                 onChangeText={handlePassword}
+//               />
+//             </View>
+//             <TouchableOpacity
+//               style={styles.btn}
+//               activeOpacity={0.8}
+//               onPress={handleSubmit}
+//             >
+//               <Text style={styles.btnTitle}>Sign up</Text>
+//             </TouchableOpacity>
+//             <TouchableOpacity
+//               style={styles.btn}
+//               activeOpacity={0.8}
+//               onPress={() => navigation.navigate("Login")}
+//             >
+//               <Text style={styles.btnTitle}>Log in</Text>
+//             </TouchableOpacity>
+//           </View>
+//         </KeyboardAvoidingView>
+//       </View>
+//     </TouchableWithoutFeedback>
+//   );
+// };

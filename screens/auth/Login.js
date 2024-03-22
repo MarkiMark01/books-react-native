@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     marginBottom: 120,
   },
   headerText: {
-    fontSize: 30,
+    fontSize: 36,
     color: "#F3D88E",
     fontFamily: "salsa-regular",
   },
