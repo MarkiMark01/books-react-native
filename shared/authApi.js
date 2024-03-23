@@ -9,3 +9,8 @@ export const signup = async (data) => {
   authInstance.defaults.headers.common.authorization = `Bearer ${result.token}`;
   return result;
 };
+export const login = async (data) => {
+  const { data: result } = await authInstance.post("/users/login", data);
+  authInstance.defaults.headers.common.authorization = `Bearer ${result.token}`;
+  return result;
+};
