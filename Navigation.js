@@ -6,12 +6,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 
+import useAuth from "./shared/hooks/useAuth";
 import { Login } from "./screens/auth/Login";
 import { Register } from "./screens/auth/Register";
 import Books from "./screens/books/book/Books";
 import Cart from "./screens/books/cart/Cart";
 import About from "./screens/books/About";
 
+const authRoute = createStackNavigator();
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
@@ -74,8 +76,15 @@ const toggleRoute = (isLogin) => {
 };
 
 export const Navigation = () => {
-  const isLogin = false;
-  const routing = toggleRoute(isLogin);
+  const isLogin = useAuth();
 
-  return <NavigationContainer>{routing}</NavigationContainer>;
+  return (
+    <NavigationContainer>
+      <authRoute.Navigator>
+        <authRoute.Screen name="AuthScreens" options={{ headerShown: false }}>
+          {() => toggleRoute(isLogin)}
+        </authRoute.Screen>
+      </authRoute.Navigator>
+    </NavigationContainer>
+  );
 };
