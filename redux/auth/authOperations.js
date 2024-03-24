@@ -17,3 +17,19 @@ export const signup = createAsyncThunk(
     }
   }
 );
+export const login = createAsyncThunk(
+  "auth/login",
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await api.login(data);
+      return result;
+    } catch ({ responce }) {
+      const { status, data } = responce;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
