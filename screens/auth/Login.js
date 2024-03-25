@@ -58,17 +58,21 @@ export const Login = ({ navigation }) => {
     console.log("Форма була успішно надіслана:", state);
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    setState(initialState); // Reset form fields
+    setState(initialState); // Скидання значень полів форми
+  };
+
+  const handleContainerPress = () => {
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
   };
 
   return (
-    <TouchableWithoutFeedback onPress={handleSubmit}>
+    <TouchableWithoutFeedback onPress={handleContainerPress}>
       <View style={styles.main}>
         <KeyboardAvoidingView
           behavior={Platform.OS == "android" ? "" : "padding"}
         >
           <View
-            // style={styles.form}
             style={{
               ...styles.form,
               marginBottom: isShowKeyboard ? 20 : 40,
@@ -192,95 +196,3 @@ const styles = StyleSheet.create({
     textAlign: "justify",
   },
 });
-
-// import React, { useState } from "react";
-// import {
-//   View,
-//   Text,
-//   StyleSheet,
-//   TextInput,
-//   TouchableOpacity,
-//   Platform,
-//   KeyboardAvoidingView,
-//   Keyboard,
-//   TouchableWithoutFeedback,
-// } from "react-native";
-
-// const initialState = {
-//   email: "",
-//   password: "",
-// };
-
-// export const Login = () => {
-//   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-//   const [isFieldTouched, setIsFieldTouched] = useState({ email: false, password: false });
-//   const [state, setState] = useState(initialState);
-
-//   const handleEmail = (value) => {
-//     setState((prevState) => ({ ...prevState, email: value }));
-//   };
-
-//   const handlePassword = (value) => {
-//     setState((prevState) => ({ ...prevState, password: value }));
-//   };
-
-//   const handleEmailFocus = () => {
-//     setIsFieldTouched((prevState) => ({ ...prevState, email: true }));
-//     setIsShowKeyboard(true);
-//   };
-
-//   const handlePasswordFocus = () => {
-//     setIsFieldTouched((prevState) => ({ ...prevState, password: true }));
-//     setIsShowKeyboard(true);
-//   };
-
-//   const handleSubmit = () => {
-//     setIsShowKeyboard(false);
-//     Keyboard.dismiss();
-//     setState(initialState); // Reset form fields
-//   };
-
-//   const canSubmit = isFieldTouched.email && isFieldTouched.password;
-
-//   return (
-//     <TouchableWithoutFeedback onPress={() => setIsShowKeyboard(false)}>
-//       <View style={styles.main}>
-//         <KeyboardAvoidingView
-//           behavior={Platform.OS == "android" ? "" : "padding"}
-//         >
-//           <View style={styles.form}>
-//             <View style={styles.header}>
-//               <Text style={styles.headerText}>Log In</Text>
-//             </View>
-//             <View>
-//               <Text style={styles.titleText}>Email</Text>
-//               <TextInput
-//                 style={styles.input}
-//                 onFocus={handleEmailFocus}
-//                 value={state.email}
-//                 onChangeText={handleEmail}
-//               />
-//             </View>
-//             <View style={{ marginTop: 5 }}>
-//               <Text style={styles.titleText}>Password</Text>
-//               <TextInput
-//                 style={styles.input}
-//                 secureTextEntry={true}
-//                 onFocus={handlePasswordFocus}
-//                 value={state.password}
-//                 onChangeText={handlePassword}
-//               />
-//             </View>
-//             <TouchableOpacity
-//               style={styles.btn}
-//               activeOpacity={0.8}
-//               onPress={canSubmit ? handleSubmit : undefined}
-//             >
-//               <Text style={styles.btnTitle}>Log In</Text>
-//             </TouchableOpacity>
-//           </View>
-//         </KeyboardAvoidingView>
-//       </View>
-//     </TouchableWithoutFeedback>
-//   );
-// };
