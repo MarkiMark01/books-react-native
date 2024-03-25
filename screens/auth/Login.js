@@ -11,6 +11,9 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
 } from "react-native";
+import { useDispatch } from "react-redux";
+
+import { login } from "../../redux/auth/authOperations";
 
 const initialState = {
   email: "",
@@ -23,6 +26,8 @@ export const Login = ({ navigation }) => {
   const [dimensions, setDimensions] = useState(
     Dimensions.get("window").width - 20 * 2
   );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const onChange = () => {
@@ -49,6 +54,8 @@ export const Login = ({ navigation }) => {
   };
 
   const handleSubmit = () => {
+    dispatch(login(state));
+    console.log("Форма була успішно надіслана:", state);
     setIsShowKeyboard(false);
     Keyboard.dismiss();
     setState(initialState); // Reset form fields
