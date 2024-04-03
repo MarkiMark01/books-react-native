@@ -10,3 +10,14 @@ export const getBooks = createAsyncThunk("books/getBooks", async () => {
     throw error;
   }
 });
+export const getUniqueBooks = createAsyncThunk(
+  "books/fetchNewUniqueBooks",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await getNewUniqueBooks(id);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
