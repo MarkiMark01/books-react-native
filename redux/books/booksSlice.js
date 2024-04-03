@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getBooks } from "./booksOperations";
+import { getBooks, getUniqueBooks } from "./booksOperations"; // Імпорт getUniqueBooks
 
 const initialState = {
   books: [],
@@ -12,7 +12,11 @@ const initialState = {
 const booksSlice = createSlice({
   name: "books",
   initialState,
-  reducers: {},
+  reducers: {
+    setUniqueBook(state, action) {
+      state.uniqueBook = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getBooks.pending, (state) => {
@@ -26,8 +30,20 @@ const booksSlice = createSlice({
       .addCase(getBooks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(getUniqueBooks.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getUniqueBooks.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.uniqueBook = action.payload;
+      })
+      .addCase(getUniqueBooks.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });
-
+export const { setUniqueBook } = booksSlice.actions;
 export default booksSlice.reducer;
