@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 import useAuth from "./shared/hooks/useAuth";
 import { Login } from "./screens/auth/Login";
@@ -12,6 +13,7 @@ import { Register } from "./screens/auth/Register";
 import Books from "./screens/books/book/Books";
 import Cart from "./screens/books/cart/Cart";
 import About from "./screens/books/About";
+import UniqueBook from "./screens/books/bookId/UniqueBook";
 
 const authRoute = createStackNavigator();
 const AuthStack = createStackNavigator();
@@ -52,11 +54,21 @@ const toggleRoute = (isLogin) => {
         }}
       />
       <MainTab.Screen
+        name="UniqueBook"
+        component={UniqueBook}
+        options={{
+          tabBarIcon: ({ focused, size, color }) => (
+            <FontAwesome name="book" size={size} color={color} />
+          ),
+          headerShown: false,
+        }}
+      />
+      <MainTab.Screen
         name="Cart"
         component={Cart}
         options={{
           tabBarIcon: ({ focused, size, color }) => (
-            <Feather name="shopping-cart" size={32} color={color} />
+            <Feather name="shopping-cart" size={size} color={color} />
           ),
           headerShown: false,
         }}
