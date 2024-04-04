@@ -5,12 +5,14 @@ import { logout } from "../../redux/auth/authOperations";
 import { getUser } from "../../redux/auth/authSelectors";
 
 const About = () => {
-  const { name } = useSelector(getUser);
+  const user = useSelector(getUser);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(logout());
   };
+
+  const name = user && user.name ? user.name : "";
 
   return (
     <View style={styles.container}>
