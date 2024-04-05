@@ -19,6 +19,31 @@ const authRoute = createStackNavigator();
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
+const tabBarOptions = {
+  tabBarShowLabel: false,
+  tabBarStyle: { display: "flex", backgroundColor: "#2fc5f9" },
+  // tabBarActiveTintColor: "#F3D88E",
+};
+
+const screenOptions = {
+  headerStyle: {
+    backgroundColor: "#001838",
+    height: 45,
+  },
+  headerTitleStyle: {
+    color: "#F3D88E",
+    textAlign: "center",
+    fontSize: 25,
+    fontFamily: "mt-m",
+  },
+  headerTitleContainerStyle: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: "33%",
+  },
+};
+
 const toggleRoute = (isLogin) => {
   if (!isLogin) {
     return (
