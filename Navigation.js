@@ -62,50 +62,65 @@ const toggleRoute = (isLogin) => {
     );
   }
   return (
-    <MainTab.Navigator
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarStyle: [{ display: "flex" }, null],
-      }}
-    >
+    <MainTab.Navigator screenOptions={tabBarOptions}>
       <MainTab.Screen
         name="Books"
         component={Books}
         options={{
-          tabBarIcon: ({ focused, size, color }) => (
-            <MaterialIcons name="my-library-books" size={size} color={color} />
+          ...screenOptions,
+          tabBarIcon: ({ size, color, focused }) => (
+            <MaterialIcons
+              name="my-library-books"
+              size={size}
+              color={focused ? "#fff" : "#001838"}
+            />
           ),
-          headerShown: false,
+          headerTitle: "Books",
         }}
       />
       <MainTab.Screen
         name="UniqueBook"
         component={UniqueBook}
         options={{
-          tabBarIcon: ({ focused, size, color }) => (
-            <FontAwesome name="book" size={size} color={color} />
+          ...screenOptions,
+          tabBarIcon: ({ size, color, focused }) => (
+            <FontAwesome
+              name="book"
+              size={size}
+              color={focused ? "#fff" : "#001838"}
+            />
           ),
-          headerShown: false,
+          headerTitle: "My book",
         }}
       />
       <MainTab.Screen
         name="Cart"
         component={Cart}
         options={{
-          tabBarIcon: ({ focused, size, color }) => (
-            <Feather name="shopping-cart" size={size} color={color} />
+          ...screenOptions,
+          tabBarIcon: ({ size, color, focused }) => (
+            <Feather
+              name="shopping-cart"
+              size={size}
+              color={focused ? "#fff" : "#001838"}
+            />
           ),
-          headerShown: false,
+          headerTitle: "Cart",
         }}
       />
       <MainTab.Screen
         name="About"
         component={About}
         options={{
-          tabBarIcon: ({ focused, size, color }) => (
-            <Entypo name="info" size={size} color={color} />
+          ...screenOptions,
+          tabBarIcon: ({ size, color, focused }) => (
+            <Entypo
+              name="info"
+              size={size}
+              color={focused ? "#fff" : "#001838"}
+            />
           ),
-          headerShown: false,
+          headerTitle: "About",
         }}
       />
     </MainTab.Navigator>
@@ -125,3 +140,4 @@ export const Navigation = () => {
     </NavigationContainer>
   );
 };
+
