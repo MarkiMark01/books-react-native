@@ -16,6 +16,9 @@ const booksSlice = createSlice({
     setUniqueBook(state, action) {
       state.uniqueBook = action.payload;
     },
+    addToCart(state, action) {
+      state.cart.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder

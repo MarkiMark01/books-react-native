@@ -1,68 +1,3 @@
-// import { configureStore } from "@reduxjs/toolkit";
-// import {
-//   persistReducer,
-//   persistStore,
-//   FLUSH,
-//   REHYDRATE,
-//   PAUSE,
-//   PERSIST,
-//   PURGE,
-//   REGISTER,
-// } from "redux-persist";
-
-// import authReducer from "./auth/authSlice";
-// import booksReducer from "./books/booksSlice";
-
-// import createWebStorage from "redux-persist/lib/storage/createWebStorage";
-
-// const createNoopStorage = () => {
-//   return {
-//     getItem(_key) {
-//       return Promise.resolve(null);
-//     },
-//     setItem(_key, value) {
-//       return Promise.resolve(value);
-//     },
-//     removeItem(_key) {
-//       return Promise.resolve();
-//     },
-//   };
-// };
-
-// const storage =
-//   typeof window === "undefined" ? createNoopStorage() : createWebStorage();
-
-// export default storage;
-
-// const authPersistConfig = {
-//   key: "auth",
-//   storage,
-//   whitelist: ["token"],
-// };
-
-// const booksPersistConfig = {
-//   key: "books",
-//   storage,
-//   whitelist: ["cart"],
-// };
-
-// const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
-// const persistedBooksReducer = persistReducer(booksPersistConfig, booksReducer);
-
-// export const store = configureStore({
-//   reducer: {
-//     auth: persistedAuthReducer,
-//     books: persistedBooksReducer,
-//   },
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware({
-//       serializableCheck: {
-//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//       },
-//     }),
-// });
-// export const persistor = persistStore(store);
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
@@ -103,6 +38,6 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(process.env.NODE_ENV === "development" ? [] : []),
 });
 export const persistor = persistStore(store);
