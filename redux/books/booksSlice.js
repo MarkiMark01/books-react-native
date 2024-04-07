@@ -22,6 +22,9 @@ const booksSlice = createSlice({
     removeFromCart(state, action) {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
+    clearCart(state) {
+      state.cart = [];
+    },
   },
   extraReducers: (builder) => {
     builder
