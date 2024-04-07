@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getBooks, getUniqueBooks } from "./booksOperations"; // Імпорт getUniqueBooks
+import { getBooks, getUniqueBooks } from "./booksOperations";
 
 const initialState = {
   books: [],
@@ -54,5 +54,7 @@ const booksSlice = createSlice({
       });
   },
 });
-export const { setUniqueBook } = booksSlice.actions;
+
+export const { setUniqueBook, addToCart, removeFromCart, clearCart } =
+  booksSlice.actions;
 export default booksSlice.reducer;
