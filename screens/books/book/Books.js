@@ -75,14 +75,49 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#e1eff9",
   },
   bookContainer: {
+    flex: 1,
+    alignItems: "center",
     marginBottom: 20,
+    backgroundColor: "#fff",
+    width: 280,
+    height: 470,
+    borderRadius: 20,
+    // shadowColor: "#2fc5f9",
+    // shadowOffset: {
+    //   width: 5,
+    //   height: 5,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
+    // elevation: 5, // Для Android
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 265,
+    height: 365,
+    borderWidth: 2,
+    borderColor: "#e1eff9",
+    borderRadius: 20,
+    marginTop: 5,
   },
+  inputBox: {
+    width: "90%",
+  },
+  input: {
+    height: 40,
+    borderColor: "#001838",
+    borderWidth: 1,
+    borderRadius: 20,
+    marginBottom: 20,
+    marginTop: 20,
+    backgroundColor: "#fff",
+    color: "#001838",
+    textAlign: "center",
+    fontSize: 18,
+  },
+
 });
 
 export default Books;
