@@ -117,7 +117,34 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
   },
-
+  bookTitle: {
+    height: 50,
+    fontSize: 18,
+    fontFamily: "mt-b",
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 15,
+    marginRight: 15,
+    color: "#001838",
+  },
+  bookBox: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  bookAuthor: {
+    marginLeft: 15,
+    fontSize: 16,
+    fontFamily: "mt-b",
+    color: "#001838",
+  },
+  bookPrice: {
+    marginRight: 15,
+    fontSize: 18,
+    fontFamily: "mt-b",
+    color: "#001838",
+  },
 });
 
 export default Books;
