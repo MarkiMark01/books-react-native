@@ -45,6 +45,13 @@ const Books = ({ navigation }) => {
     navigation.navigate("UniqueBook");
   };
 
+  const filterBooks = () => {
+    return books.filter(
+      (item) =>
+        item.title && item.title.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
   useEffect(() => {
     dispatch(getBooks());
   }, [dispatch]);
