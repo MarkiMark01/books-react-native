@@ -15,6 +15,24 @@ import {
 
 import { setUniqueBook } from "../../../redux/books/booksSlice";
 
+const BookItem = React.memo(({ item, handleUniqueBook }) => (
+  <TouchableOpacity
+    key={item.id}
+    style={styles.bookContainer}
+    activeOpacity={0.8}
+    onPress={() => handleUniqueBook(item)}
+  >
+    {item.image && <Image source={{ uri: item.image }} style={styles.image} />}
+    <View style={{ width: "100%" }}>
+      <Text style={styles.bookTitle}>{item.title}</Text>
+      <View style={styles.bookBox}>
+        <Text style={styles.bookAuthor}>{item.author}</Text>
+        <Text style={styles.bookPrice}>$ {item.price}</Text>
+      </View>
+    </View>
+  </TouchableOpacity>
+));
+
 const Books = ({ navigation }) => {
   const books = useSelector((state) => state.books.books);
   const isLoading = useSelector((state) => state.books.isLoading);
