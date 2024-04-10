@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooks } from "../../../redux/books/booksOperations";
 import {
@@ -11,6 +11,9 @@ import {
   RefreshControl,
   TouchableOpacity,
   StatusBar,
+  TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 
 import { setUniqueBook } from "../../../redux/books/booksSlice";
@@ -37,12 +40,19 @@ const Books = ({ navigation }) => {
   const books = useSelector((state) => state.books.books);
   const isLoading = useSelector((state) => state.books.isLoading);
   const error = useSelector((state) => state.books.error);
+  const [filter, setFilter] = useState("");
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
 
   const handleUniqueBook = (book) => {
     dispatch(setUniqueBook(book));
     navigation.navigate("UniqueBook");
+    setFilter("");
   };
 
   const filterBooks = () => {
@@ -52,46 +62,47 @@ const Books = ({ navigation }) => {
     );
   };
 
-  useEffect(() => {
-    dispatch(getBooks());
-  }, [dispatch]);
-
   const onRefresh = () => {
     dispatch(getBooks());
   };
 
+  const dismissKeyboard = () => {
+    Keyboard.dismiss();
+    setIsShowKeyboard(false);
+  };
+
   return (
-    <View style={styles.container}>
-      {isLoading ? (
-        <ActivityIndicator size="large" color={"#001838"} />
-      ) : error ? (
-        <Text>Error: {error}</Text>
-      ) : (
-        <FlatList
-          refreshControl={
-            <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
-          }
-          data={books}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              key={item.id}
-              style={styles.bookContainer}
-              activeOpacity={0.8}
-              onPress={() => handleUniqueBook(item)}
-            >
-              {item.image && (
-                <Image source={{ uri: item.image }} style={styles.image} />
-              )}
-              <Text>{item.title}</Text>
-              <Text>{item.author}</Text>
-              <Text>{item.price}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item.id.toString()}
-        />
-      )}
-      <StatusBar theme="auto" />
-    </View>
+    <TouchableWithoutFeedback onPress={dismissKeyboard}>
+      <View style={styles.container}>
+        <View style={styles.inputBox}>
+          <TextInput
+            style={styles.input}
+            placeholder="Filter your books"
+            value={filter}
+            onChangeText={setFilter}
+            onFocus={() => setIsShowKeyboard(true)}
+          />
+        </View>
+        {isLoading ? (
+          <ActivityIndicator size="large" color={"#001838"} />
+        ) : error ? (
+          <Text>Error: {error}</Text>
+        ) : (
+          <FlatList
+            refreshControl={
+              <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
+            }
+            data={filterBooks()}
+            renderItem={({ item }) => (
+              <BookItem item={item} handleUniqueBook={handleUniqueBook} />
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            showsVerticalScrollIndicator={false}
+          />
+        )}
+        <StatusBar theme="auto" />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -109,6 +120,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     width: 280,
     height: 470,
+    borderWidth: 1,
+    borderColor: "#F3D88E",
     borderRadius: 20,
     // shadowColor: "#2fc5f9",
     // shadowOffset: {
