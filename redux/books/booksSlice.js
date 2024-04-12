@@ -1,5 +1,7 @@
+// booksSlice.js
+
 import { createSlice } from "@reduxjs/toolkit";
-import { getBooks, getUniqueBooks } from "./booksOperations";
+import { getBooks, getUniqueBooks, fetchCart } from "./booksOperations";
 
 const initialState = {
   books: [],
@@ -51,6 +53,9 @@ const booksSlice = createSlice({
       .addCase(getUniqueBooks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(fetchCart.fulfilled, (state, action) => {
+        state.cart = action.payload;
       });
   },
 });
@@ -58,3 +63,4 @@ const booksSlice = createSlice({
 export const { setUniqueBook, addToCart, removeFromCart, clearCart } =
   booksSlice.actions;
 export default booksSlice.reducer;
+
