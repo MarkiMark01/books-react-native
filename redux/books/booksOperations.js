@@ -21,3 +21,23 @@ export const getUniqueBooks = createAsyncThunk(
     }
   }
 );
+//-------------------Cart-------------------------------
+
+export const fetchCart = createAsyncThunk(
+  "todos/fetchTodos",
+  async function (_, { rejectWithValue }) {
+    try {
+      const response = await fetch(
+        "https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart"
+      );
+
+      if (!response.ok) {
+        throw new Error("Server Error!");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
