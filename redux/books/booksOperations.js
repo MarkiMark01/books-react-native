@@ -67,3 +67,24 @@ export const addNewCart = createAsyncThunk(
     }
   }
 );
+
+export const deleteCart = createAsyncThunk(
+  "todos/deleteTodo",
+  async function (id, { rejectWithValue, dispatch }) {
+    try {
+      const response = await fetch(
+        `https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart/${id}`,
+
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Can't delete task. Server error.");
+      }
+      dispatch(removeFromCart({ id }));
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
