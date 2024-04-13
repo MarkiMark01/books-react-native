@@ -41,3 +41,29 @@ export const fetchCart = createAsyncThunk(
     }
   }
 );
+
+export const addNewCart = createAsyncThunk(
+  "todos/addNewTodo",
+  async function (book, { rejectWithValue, dispatch }) {
+    // accept book as a parameter
+    try {
+      const response = await fetch(
+        "https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(book), // send book details in the request body
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Can't add task. Server error.");
+      }
+      const data = await response.json();
+      dispatch(addToCart(data));
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
