@@ -19,19 +19,12 @@ const authPersistConfig = {
   whitelist: ["token"],
 };
 
-const booksPersistConfig = {
-  key: "books",
-  storage: AsyncStorage,
-  whitelist: ["cart"],
-};
-
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
-const persistedBooksReducer = persistReducer(booksPersistConfig, booksReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    books: persistedBooksReducer,
+    books: booksReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
