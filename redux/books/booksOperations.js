@@ -88,3 +88,35 @@ export const deleteCart = createAsyncThunk(
     }
   }
 );
+export const clearAllCart = createAsyncThunk(
+  "cart/clearCart",
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        "https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart"
+      );
+      if (!response.ok) {
+        throw new Error("Server Error!");
+      }
+      const data = await response.json();
+
+      await Promise.all(
+        data.map(async (book) => {
+          const deleteResponse = await fetch(
+            `https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart/${book.id}`,
+            {
+              method: "DELETE",
+            }
+          );
+          if (!deleteResponse.ok) {
+            throw new Error("Can't delete book. Server error.");
+          }
+        })
+      );
+      dispatch(clearCart());
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
