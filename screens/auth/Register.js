@@ -11,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
   StatusBar,
+  Alert,
 } from "react-native";
 import { useDispatch } from "react-redux";
 
@@ -59,6 +60,11 @@ export const Register = ({ navigation }) => {
   };
 
   const handleSubmit = () => {
+    const { email, password } = state;
+    if (email.trim() === "" || password.trim() === "") {
+      Alert.alert("Enter your login and password or sign up, please :)");
+      return;
+    }
     dispatch(signup(state));
     console.log("Форма була успішно надіслана:", state);
     setIsShowKeyboard(false);
