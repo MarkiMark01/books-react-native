@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,36 +8,141 @@ import {
   StyleSheet,
   ActivityIndicator,
   RefreshControl,
+  Modal,
+  TouchableWithoutFeedback,
 } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const UniqueBook = () => {
+import { Feather } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { addNewCart } from "../../../redux/books/booksOperations";
+import { useModal } from "../../../shared/hooks/useModal";
+
+const UniqueBook = ({ navigation }) => {
   const uniqueBook = useSelector((state) => state.books.uniqueBook);
   const isLoading = useSelector((state) => state.books.isLoading);
   const error = useSelector((state) => state.books.error);
+  const cart = useSelector((state) => state.books.cart);
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [modalWindow, toggleModalOpen, toggleModalClose] = useModal();
 
-  if (!uniqueBook) {
-    return <Text>No unique book selected</Text>;
-  }
+  useEffect(() => {
+    if (uniqueBook) {
+      calculateTotalPrice(quantity, uniqueBook.price);
+    }
+  }, [uniqueBook, quantity]);
+
+  const handleQuantity = (count) => {
+    let newQuantity;
+    if (count === "") {
+      newQuantity = "";
+    } else {
+      newQuantity = isNaN(count) ? 1 : Math.max(1, Math.floor(Number(count)));
+    }
+
+    setQuantity(newQuantity);
+    calculateTotalPrice(newQuantity, uniqueBook.price);
+  };
+
+  const calculateTotalPrice = (quantity, price) => {
+    const total = quantity * price;
+    setTotalPrice(total.toFixed(2));
+  };
+
+  const handleAddToCart = () => {
+    const isBookInCart = cart.some((item) => item.id === uniqueBook.id);
+    if (isBookInCart) {
+      toggleModalOpen();
+    } else {
+      dispatch(
+        addNewCart({
+          id: uniqueBook.id,
+          title: uniqueBook.title,
+          price: uniqueBook.price,
+          quantity: quantity,
+          totalSum: totalPrice,
+        })
+      );
+      setQuantity(1);
+      navigation.navigate("Cart");
+    }
+  };
 
   const renderItem = ({ item }) => (
-    <View style={styles.container}>
+    <>
       {isLoading ? (
         <ActivityIndicator color={"#001838"} size="large" />
       ) : error ? (
         <Text>Error: {error}</Text>
       ) : (
-        <>
+        <View style={styles.container}>
           <Image source={{ uri: item.image }} style={styles.image} />
-          <Text>{item.title}</Text>
-          <Text>{item.author}</Text>
-          <TouchableOpacity onPress={() => console.log("Add to cart")}>
-            <Text>Add to Cart</Text>
+          <Text style={styles.bookTitle}>{item.title}</Text>
+          <Text style={styles.description}>{item.description}</Text>
+          <View style={styles.box}>
+            <View style={styles.priceBlock}>
+              <Text style={styles.price}>Price:</Text>
+              <Text style={styles.price}> ${item.price}</Text>
+            </View>
+
+            <View>
+              <View style={styles.countBlock}>
+                <Text style={styles.quantity}>Quantity:</Text>
+
+                <View style={styles.count}>
+                  <TouchableOpacity
+                    onPress={() => handleQuantity(quantity - 1)}
+                    style={{ height: 30 }}
+                    activeOpacity={0.8}
+                  >
+                    <Feather
+                      name="minus-circle"
+                      size={22}
+                      color="red"
+                      style={{ marginTop: 5, marginRight: 6 }}
+                    />
+                  </TouchableOpacity>
+                  <Text
+                    style={{
+                      fontSize: 24,
+                      fontFamily: "mt-m",
+                      marginLeft: 5,
+                      marginRight: 12,
+                    }}
+                  >
+                    {quantity}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => handleQuantity(quantity + 1)}
+                    activeOpacity={0.8}
+                  >
+                    <AntDesign
+                      name="pluscircleo"
+                      size={20}
+                      color="green"
+                      style={{ marginTop: 7 }}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={styles.totalBlock}>
+                <Text style={styles.total1}>Total:</Text>
+                <Text style={styles.total2}>${totalPrice}</Text>
+              </View>
+            </View>
+          </View>
+          <TouchableOpacity onPress={handleAddToCart} style={styles.addToCart}>
+            <Text style={{ fontSize: 17, fontFamily: "mt-b" }}>
+              Add to cart
+            </Text>
           </TouchableOpacity>
-        </>
+        </View>
       )}
-    </View>
+    </>
   );
+
 
   return (
     <FlatList
