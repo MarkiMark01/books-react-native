@@ -143,16 +143,48 @@ const UniqueBook = ({ navigation }) => {
     </>
   );
 
-
   return (
-    <FlatList
-      data={[uniqueBook]}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id.toString()}
-      refreshControl={
-        <RefreshControl refreshing={isLoading} onRefresh={() => { }} />
-      }
-    />
+    <>
+      {uniqueBook ? (
+        <FlatList
+          data={[uniqueBook]}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+          refreshControl={
+            <RefreshControl refreshing={isLoading} onRefresh={() => { }} />
+          }
+          extraData={[quantity, totalPrice]}
+        />
+      ) : (
+        <View style={styles.emptyCartContainer}>
+          <Text style={{ fontSize: 20, fontFamily: "mt-b" }}>
+            The book hasn't been added yet...
+          </Text>
+        </View>
+      )}
+      <Modal
+        visible={modalWindow}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={toggleModalClose}
+      >
+        <TouchableWithoutFeedback onPress={toggleModalClose}>
+          <View style={styles.modal}>
+            <View style={styles.modalBox}>
+              <Text style={styles.modalText}>
+                This book is already in the cart
+              </Text>
+              <TouchableOpacity
+                onPress={toggleModalClose}
+                style={styles.modalBtn}
+              >
+                <Text style={styles.modalBtnT}>Ok</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    </>
   );
 };
 
