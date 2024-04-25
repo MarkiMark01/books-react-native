@@ -85,6 +85,76 @@ const Cart = () => {
     </View>
   );
 
+  return (
+    <View style={styles.container}>
+      {isLoading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : error ? (
+        <Text>Error: {error}</Text>
+      ) : (
+        <>
+          {cart.length > 0 ? (
+            <View style={styles.utdBlocks}>
+              <FlatList
+                data={cart}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => `${item.id}-${index}`}
+                refreshControl={
+                  <RefreshControl refreshing={isLoading} onRefresh={() => { }} />
+                }
+              />
+              <View style={styles.endBlock}>
+                {cart.length > 0 && (
+                  <View>
+                    <Text style={styles.endBlockS}>
+                      Total Sum: ${totalAllSum}
+                    </Text>
+                  </View>
+                )}
+                <TouchableOpacity
+                  onPress={handleRClearCart}
+                  // disabled={isCartEmpty}
+                  style={styles.endBlockBtn}
+                >
+                  <Text style={styles.endBlockP}>Purchase</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          ) : (
+            <View style={styles.emptyCartContainer}>
+              <Feather name="shopping-cart" size={36} color="black" />
+              <Text style={{ fontSize: 20, fontFamily: "mt-b" }}>
+                Your cart is empty...
+              </Text>
+            </View>
+          )}
 
-
-};
+          <Modal
+            visible={modalWindow}
+            transparent={true}
+            animationType="slide"
+            onRequestClose={toggleModalClose}
+          >
+            <TouchableWithoutFeedback onPress={toggleModalClose}>
+              <View style={styles.modal}>
+                <AntDesign
+                  name="closecircleo"
+                  size={30}
+                  color="#F3D88E"
+                  style={{ marginLeft: "80%", marginBottom: 5 }}
+                />
+                <View style={styles.modalBox}>
+                  <Image
+                    source={require("../../../assets/thanks.jpg")}
+                    style={styles.modalImage}
+                  />
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          </Modal>
+        </>
+      )}
+    </View>
+  );
+}
+export default Cart;
