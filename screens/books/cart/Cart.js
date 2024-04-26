@@ -157,4 +157,70 @@ const Cart = () => {
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#001838",
+    backgroundColor: "#fff",
+    // backgroundColor: "#e1eff9"
+  },
+  modal: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalBox: {
+    backgroundColor: "#fff",
+    padding: 20,
+    marginBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalImage: {
+    width: 350,
+    height: 350,
+    alignSelf: "center",
+  },
+  emptyCartContainer: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#e1eff9",
+  },
+
+  cartBlock: {
+    width: 365,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "yellow",
+    marginTop: 20,
+    marginLeft: 14,
+    borderRadius: 20,
+  },
+  titleBlock: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    height: 30,
+    backgroundColor: "#2fc5f9",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  foot: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    height: 30,
+    backgroundColor: "#F3D88E",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+
+});
 export default Cart;
