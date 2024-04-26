@@ -156,7 +156,8 @@ const Cart = () => {
       )}
     </View>
   );
-}
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -221,6 +222,98 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
-
+  titleName: {
+    color: "#fff",
+    marginLeft: 15,
+    fontSize: 16,
+    fontFamily: "mt-b",
+  },
+  price: {
+    color: "#fff",
+    marginRight: 10,
+    fontSize: 15,
+    fontFamily: "mt-b",
+  },
+  priceBlock: {
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    height: 80,
+  },
+  title: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 140,
+    height: 100,
+    color: "#001838",
+    marginLeft: 5,
+    // fontSize: 20,
+  },
+  imageBlock: {
+    justifyContent: "center",
+    width: 20,
+    height: 50,
+  },
+  image: {
+    width: 25,
+    height: 25,
+  },
+  totalSum: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+    width: 185,
+    height: 80,
+    backgroundColor: "#fff",
+  },
+  totalSumP: {
+    color: "#001838",
+    fontSize: 15,
+    marginLeft: 0,
+  },
+  totalSumQ: {
+    color: "#001838",
+    fontSize: 15,
+    marginRight: 5,
+  },
+  totalSumS: {
+    color: "#001838",
+    fontSize: 15,
+    marginRight: 5,
+  },
+  utdBlocks: {
+    width: "100%",
+    height: "100%",
+  },
+  endBlock: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: 50,
+    backgroundColor: "#001838",
+  },
+  endBlockP: {
+    color: "#F3D88E",
+    fontFamily: "mt-b",
+  },
+  endBlockS: {
+    color: "#F3D88E",
+    fontSize: 16,
+    fontFamily: "mt-b",
+    marginLeft: 10,
+  },
+  endBlockBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 80,
+    height: 30,
+    borderWidth: 1,
+    borderColor: "#F3D88E",
+    borderRadius: 20,
+    marginRight: 10,
+  },
 });
+
 export default Cart;
