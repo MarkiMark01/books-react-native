@@ -128,12 +128,67 @@ const About = () => {
   );
 };
 
-export default About;
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#e1eff9",
+    // marginTop: 10,
+  },
+  header: {
+    width: "100%",
+    height: 50,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
+    backgroundColor: "#2fc5f9",
+  },
+  headerName: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    width: 250,
+    marginLeft: 10,
+  },
+  headerTitle: {
+    marginLeft: 10,
+    fontFamily: "mt-b",
+    fontSize: 18,
+    color: "#fff",
+  },
+  headerBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 70,
+    height: 30,
+    borderWidth: 1,
+    borderColor: "#fff",
+    borderRadius: 20,
+    marginRight: 10,
+  },
+  headerBtnT: {
+    color: "#fff",
+    fontSize: 15,
+    fontFamily: "mt-m",
+  },
+  image: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#F3D88E",
+  },
+  description: {
+    fontSize: 13,
+    fontFamily: "mt-b",
+    color: "#001838",
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 10,
+    textAlign: "justify",
   },
 });
+
+export default About;
+
+
