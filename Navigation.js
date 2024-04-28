@@ -34,7 +34,7 @@ const screenOptions = {
     color: "#F3D88E",
     textAlign: "center",
     fontSize: 25,
-    fontFamily: "mt-m",
+    fontFamily: "mt-b",
   },
   headerTitleContainerStyle: {
     flex: 1,
@@ -140,4 +140,3 @@ export const Navigation = () => {
     </NavigationContainer>
   );
 };
-

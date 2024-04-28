@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../../shared/booksApi";
+import { addToCart, removeFromCart, clearCart } from "./booksSlice";
 
 export const getBooks = createAsyncThunk("books/getBooks", async () => {
   try {
@@ -21,7 +22,8 @@ export const getUniqueBooks = createAsyncThunk(
     }
   }
 );
-//-------------------Cart-------------------------------
+
+//===========================Cart===========================
 
 export const fetchCart = createAsyncThunk(
   "todos/fetchTodos",
@@ -88,6 +90,7 @@ export const deleteCart = createAsyncThunk(
     }
   }
 );
+
 export const clearAllCart = createAsyncThunk(
   "cart/clearCart",
   async (_, { rejectWithValue, dispatch }) => {

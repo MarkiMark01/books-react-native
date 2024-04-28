@@ -63,4 +63,3 @@ const booksSlice = createSlice({
 export const { setUniqueBook, addToCart, removeFromCart, clearCart } =
   booksSlice.actions;
 export default booksSlice.reducer;
-

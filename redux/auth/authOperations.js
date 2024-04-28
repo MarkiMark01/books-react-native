@@ -35,22 +35,40 @@ export const login = createAsyncThunk(
   }
 );
 
+// export const logout = createAsyncThunk(
+//   "auth/logout",
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const result = await api.logout();
+//       const serializableData = {
+//         data: result.data,
+//         status: result.status,
+//         statusText: result.statusText,
+//       };
+//       return serializableData;
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   }
+// );
+
 export const logout = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      const result = await api.logout();
-      const serializableData = {
-        data: result.data,
-        status: result.status,
-        statusText: result.statusText,
-      };
-      return serializableData;
+      await api.logout();
+      return null; // Return null when logout is successful
     } catch (error) {
-      return rejectWithValue(error);
+      // Handle the AxiosError object and extract relevant information
+      const serializableError = {
+        message: error.message,
+        status: error.response ? error.response.status : null,
+      };
+      return rejectWithValue(serializableError);
     }
   }
 );
+
 // export const current = createAsyncThunk(
 //   "auth/current",
 //   async (_, { rejectWithValue, getState }) => {

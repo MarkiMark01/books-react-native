@@ -151,7 +151,7 @@ const UniqueBook = ({ navigation }) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           refreshControl={
-            <RefreshControl refreshing={isLoading} onRefresh={() => { }} />
+            <RefreshControl refreshing={isLoading} onRefresh={() => {}} />
           }
           extraData={[quantity, totalPrice]}
         />

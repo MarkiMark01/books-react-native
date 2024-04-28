@@ -100,7 +100,7 @@ const Cart = () => {
                 renderItem={renderItem}
                 keyExtractor={(item, index) => `${item.id}-${index}`}
                 refreshControl={
-                  <RefreshControl refreshing={isLoading} onRefresh={() => { }} />
+                  <RefreshControl refreshing={isLoading} onRefresh={() => {}} />
                 }
               />
               <View style={styles.endBlock}>
