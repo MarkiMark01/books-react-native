@@ -15,13 +15,13 @@ import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 
 import { useSelector, useDispatch } from "react-redux";
-
 import {
   deleteCart,
   fetchCart,
   clearAllCart,
 } from "../../../redux/books/booksOperations";
 import { useModal } from "../../../shared/hooks/useModal";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
   const cart = useSelector((state) => state.books.cart);
@@ -30,6 +30,7 @@ const Cart = () => {
   const [modalWindow, toggleModalOpen, toggleModalClose] = useModal();
 
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleRemoveFromCart = (item) => {
     dispatch(deleteCart(item.id));
@@ -54,12 +55,13 @@ const Cart = () => {
         <View>
           <Text style={styles.titleName}>Title</Text>
         </View>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", marginRight: 5 }}>
           <Text style={styles.price}>Price</Text>
           <Text style={styles.price}>Quantity</Text>
           <Text style={styles.price}>Total</Text>
         </View>
       </View>
+
       <View style={styles.priceBlock}>
         <View style={styles.title}>
           <Text style={{ fontSize: 16, fontFamily: "mt-b", color: "#001838" }}>
@@ -100,7 +102,7 @@ const Cart = () => {
                 renderItem={renderItem}
                 keyExtractor={(item, index) => `${item.id}-${index}`}
                 refreshControl={
-                  <RefreshControl refreshing={isLoading} onRefresh={() => {}} />
+                  <RefreshControl refreshing={isLoading} onRefresh={() => { }} />
                 }
               />
               <View style={styles.endBlock}>
@@ -116,7 +118,7 @@ const Cart = () => {
                   // disabled={isCartEmpty}
                   style={styles.endBlockBtn}
                 >
-                  <Text style={styles.endBlockP}>Purchase</Text>
+                  <Text style={styles.endBlockP}>"Purchase"</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -124,7 +126,7 @@ const Cart = () => {
             <View style={styles.emptyCartContainer}>
               <Feather name="shopping-cart" size={36} color="black" />
               <Text style={{ fontSize: 20, fontFamily: "mt-b" }}>
-                Your cart is empty...
+                "Your cart is empty..."
               </Text>
             </View>
           )}
@@ -233,6 +235,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     fontSize: 15,
     fontFamily: "mt-b",
+    marginRight: 11,
   },
   priceBlock: {
     flexDirection: "row",
@@ -267,6 +270,7 @@ const styles = StyleSheet.create({
     width: 185,
     height: 80,
     backgroundColor: "#fff",
+    marginRight: 5,
   },
   totalSumP: {
     color: "#001838",
@@ -274,14 +278,17 @@ const styles = StyleSheet.create({
     marginLeft: 0,
   },
   totalSumQ: {
+    textAlign: "left",
+    width: 20,
     color: "#001838",
     fontSize: 15,
-    marginRight: 5,
+    marginRight: 0,
   },
   totalSumS: {
+    minWidth: 49,
     color: "#001838",
-    fontSize: 15,
-    marginRight: 5,
+    marginRight: 3,
+    // backgroundColor: "grey",
   },
   utdBlocks: {
     width: "100%",
