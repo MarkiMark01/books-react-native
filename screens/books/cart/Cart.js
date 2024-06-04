@@ -46,19 +46,19 @@ const Cart = () => {
   }, [dispatch]);
 
   const totalAllSum = cart
-    .reduce((sum, item) => sum + parseFloat(item.totalSum), 0)
+    .reduce((sum, item) => sum + parseFloat(item.totalPrice), 0)
     .toFixed(2);
 
   const renderItem = ({ item }) => (
     <View key={item.id} style={styles.cartBlock}>
       <View style={styles.titleBlock}>
         <View>
-          <Text style={styles.titleName}>Title</Text>
+          <Text style={styles.titleName}>{t("Title")}</Text>
         </View>
         <View style={{ flexDirection: "row", marginRight: 5 }}>
-          <Text style={styles.price}>Price</Text>
-          <Text style={styles.price}>Quantity</Text>
-          <Text style={styles.price}>Total</Text>
+          <Text style={styles.price}>{t("Price")}</Text>
+          <Text style={styles.price}>{t("Quantity")}</Text>
+          <Text style={styles.price}>{t("Total")}</Text>
         </View>
       </View>
 
@@ -80,7 +80,7 @@ const Cart = () => {
         <View style={styles.totalSum}>
           <Text style={styles.totalSumP}>${item.price}</Text>
           <Text style={styles.totalSumQ}>{item.quantity}</Text>
-          <Text style={styles.totalSumS}>${item.totalSum}</Text>
+          <Text style={styles.totalSumS}>${item.totalPrice}</Text>
         </View>
       </View>
       <View style={styles.foot}></View>
@@ -109,7 +109,7 @@ const Cart = () => {
                 {cart.length > 0 && (
                   <View>
                     <Text style={styles.endBlockS}>
-                      Total Sum: ${totalAllSum}
+                      {t("Total Sum")}: ${totalAllSum}
                     </Text>
                   </View>
                 )}
@@ -118,7 +118,7 @@ const Cart = () => {
                   // disabled={isCartEmpty}
                   style={styles.endBlockBtn}
                 >
-                  <Text style={styles.endBlockP}>"Purchase"</Text>
+                  <Text style={styles.endBlockP}>{t("Purchase")}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -126,7 +126,7 @@ const Cart = () => {
             <View style={styles.emptyCartContainer}>
               <Feather name="shopping-cart" size={36} color="black" />
               <Text style={{ fontSize: 20, fontFamily: "mt-b" }}>
-                "Your cart is empty..."
+                {t("Your cart is empty...")}
               </Text>
             </View>
           )}
