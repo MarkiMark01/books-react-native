@@ -62,7 +62,7 @@ const UniqueBook = ({ navigation }) => {
           title: uniqueBook.title,
           price: uniqueBook.price,
           quantity: quantity,
-          totalSum: totalPrice,
+          totalPrice: totalPrice,
         })
       );
       setQuantity(1);
@@ -151,7 +151,7 @@ const UniqueBook = ({ navigation }) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           refreshControl={
-            <RefreshControl refreshing={isLoading} onRefresh={() => {}} />
+            <RefreshControl refreshing={isLoading} onRefresh={() => { }} />
           }
           extraData={[quantity, totalPrice]}
         />
