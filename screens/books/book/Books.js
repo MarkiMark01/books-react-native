@@ -15,6 +15,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { setUniqueBook } from "../../../redux/books/booksSlice";
 
@@ -42,6 +43,7 @@ const Books = ({ navigation }) => {
   const error = useSelector((state) => state.books.error);
   const [filter, setFilter] = useState("");
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -77,7 +79,7 @@ const Books = ({ navigation }) => {
         <View style={styles.inputBox}>
           <TextInput
             style={styles.input}
-            placeholder="Filter your books"
+            placeholder={t("Search by book title")}
             value={filter}
             onChangeText={setFilter}
             onFocus={() => setIsShowKeyboard(true)}
