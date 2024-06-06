@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next"; // Імпортуємо useTranslation
 
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
@@ -19,6 +20,7 @@ import { addNewCart } from "../../../redux/books/booksOperations";
 import { useModal } from "../../../shared/hooks/useModal";
 
 const UniqueBook = ({ navigation }) => {
+  const { t } = useTranslation();
   const uniqueBook = useSelector((state) => state.books.uniqueBook);
   const isLoading = useSelector((state) => state.books.isLoading);
   const error = useSelector((state) => state.books.error);
@@ -80,16 +82,16 @@ const UniqueBook = ({ navigation }) => {
         <View style={styles.container}>
           <Image source={{ uri: item.image }} style={styles.image} />
           <Text style={styles.bookTitle}>{item.title}</Text>
-          <Text style={styles.description}>{item.description}</Text>
+          <Text style={styles.description}>{t(item.description)}</Text>
           <View style={styles.box}>
             <View style={styles.priceBlock}>
-              <Text style={styles.price}>Price:</Text>
+              <Text style={styles.price}>{t("Price")}: </Text>
               <Text style={styles.price}> ${item.price}</Text>
             </View>
 
             <View>
               <View style={styles.countBlock}>
-                <Text style={styles.quantity}>Quantity:</Text>
+                <Text style={styles.quantity}>{t("Quantity")}: </Text>
 
                 <View style={styles.count}>
                   <TouchableOpacity
@@ -128,14 +130,14 @@ const UniqueBook = ({ navigation }) => {
                 </View>
               </View>
               <View style={styles.totalBlock}>
-                <Text style={styles.total1}>Total:</Text>
-                <Text style={styles.total2}>${totalPrice}</Text>
+                <Text style={styles.total1}>{t("Total")}: </Text>
+                <Text style={styles.total2}>${t(totalPrice)}</Text>
               </View>
             </View>
           </View>
           <TouchableOpacity onPress={handleAddToCart} style={styles.addToCart}>
             <Text style={{ fontSize: 17, fontFamily: "mt-b" }}>
-              Add to cart
+              {t("Add to cart")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -158,7 +160,7 @@ const UniqueBook = ({ navigation }) => {
       ) : (
         <View style={styles.emptyCartContainer}>
           <Text style={{ fontSize: 20, fontFamily: "mt-b" }}>
-            The book hasn't been added yet...
+            {t("The book hasn't been added yet...")}
           </Text>
         </View>
       )}
@@ -172,13 +174,13 @@ const UniqueBook = ({ navigation }) => {
           <View style={styles.modal}>
             <View style={styles.modalBox}>
               <Text style={styles.modalText}>
-                This book is already in the cart
+                {t("This book is already in the cart")}
               </Text>
               <TouchableOpacity
                 onPress={toggleModalClose}
                 style={styles.modalBtn}
               >
-                <Text style={styles.modalBtnT}>Ok</Text>
+                <Text style={styles.modalBtnT}>{t("Ok")}</Text>
               </TouchableOpacity>
             </View>
           </View>
