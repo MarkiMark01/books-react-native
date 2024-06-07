@@ -14,6 +14,7 @@ import {
   Alert,
 } from "react-native";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { signup } from "../../redux/auth/authOperations";
 
@@ -31,6 +32,7 @@ export const Register = ({ navigation }) => {
   );
 
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const onChange = () => {
@@ -62,7 +64,7 @@ export const Register = ({ navigation }) => {
   const handleSubmit = () => {
     const { email, password } = state;
     if (email.trim() === "" || password.trim() === "") {
-      Alert.alert("Enter your login and password or sign up, please :)");
+      Alert.alert(t("Enter your login and password or sign up, please :)"));
       return;
     }
     dispatch(signup(state));
@@ -91,10 +93,10 @@ export const Register = ({ navigation }) => {
             }}
           >
             <View style={styles.header}>
-              <Text style={styles.headerText}>Sign up</Text>
+              <Text style={styles.headerText}>{t("Sign up")}</Text>
             </View>
             <View>
-              <Text style={styles.titleText}>Name</Text>
+              <Text style={styles.titleText}>{t("Name")}</Text>
               <TextInput
                 style={styles.input}
                 onFocus={() => setIsShowKeyboard(true)}
@@ -103,7 +105,7 @@ export const Register = ({ navigation }) => {
               />
             </View>
             <View style={{ marginTop: 5 }}>
-              <Text style={styles.titleText}>Email</Text>
+              <Text style={styles.titleText}>{t("Email")}</Text>
               <TextInput
                 style={styles.input}
                 onFocus={() => setIsShowKeyboard(true)}
@@ -112,7 +114,7 @@ export const Register = ({ navigation }) => {
               />
             </View>
             <View style={{ marginTop: 5 }}>
-              <Text style={styles.titleText}>Password</Text>
+              <Text style={styles.titleText}>{t("Password")}</Text>
               <TextInput
                 style={styles.input}
                 secureTextEntry={true}
@@ -126,14 +128,14 @@ export const Register = ({ navigation }) => {
               activeOpacity={0.8}
               onPress={handleSubmit}
             >
-              <Text style={styles.btnTitle}>Sign up</Text>
+              <Text style={styles.btnTitle}>{t("Sign up")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.btn}
               activeOpacity={0.8}
               onPress={() => navigation.navigate("Login")}
             >
-              <Text style={styles.btnTitle}>Log in</Text>
+              <Text style={styles.btnTitle}>{t("Log in")}</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
@@ -201,3 +203,4 @@ const styles = StyleSheet.create({
     fontFamily: "salsa-regular",
   },
 });
+
