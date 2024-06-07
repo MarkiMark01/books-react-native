@@ -14,6 +14,7 @@ import {
   Alert,
 } from "react-native";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { login } from "../../redux/auth/authOperations";
 
@@ -30,6 +31,7 @@ export const Login = ({ navigation }) => {
   );
 
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const onChange = () => {
@@ -58,7 +60,7 @@ export const Login = ({ navigation }) => {
   const handleSubmit = () => {
     const { email, password } = state;
     if (email.trim() === "" || password.trim() === "") {
-      Alert.alert("Enter your login and password or sign up, please :)");
+      Alert.alert(t("Enter your login and password or sign up, please :)"));
       return;
     }
     dispatch(login(state));
@@ -88,14 +90,14 @@ export const Login = ({ navigation }) => {
             }}
           >
             <View style={styles.header}>
-              <Text style={styles.headerText}>Log In</Text>
+              <Text style={styles.headerText}>{t("Log in")}</Text>
               <Text style={styles.headerText2}>
-                Log in now to unlock your exclusive access to
+                {t("Log in now to unlock your exclusive access")}
               </Text>
-              <Text style={styles.headerText3}>content and offers</Text>
+              <Text style={styles.headerText3}>{t("content and offers")}</Text>
             </View>
             <View>
-              <Text style={styles.titleText}>Email</Text>
+              <Text style={styles.titleText}>{t("Email")}</Text>
               <TextInput
                 style={styles.input}
                 onFocus={() => setIsShowKeyboard(true)}
@@ -104,7 +106,7 @@ export const Login = ({ navigation }) => {
               />
             </View>
             <View style={{ marginTop: 5 }}>
-              <Text style={styles.titleText}>Password</Text>
+              <Text style={styles.titleText}>{t("Password")}</Text>
               <TextInput
                 style={styles.input}
                 secureTextEntry={true}
@@ -118,14 +120,14 @@ export const Login = ({ navigation }) => {
               activeOpacity={0.8}
               onPress={handleSubmit}
             >
-              <Text style={styles.btnTitle}>Log in</Text>
+              <Text style={styles.btnTitle}>{t("Log in")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.btn}
               activeOpacity={0.8}
               onPress={() => navigation.navigate("Register")}
             >
-              <Text style={styles.btnTitle}>Sign up</Text>
+              <Text style={styles.btnTitle}>{t("Sign up")}</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
