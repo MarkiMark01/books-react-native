@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,16 +9,30 @@ import {
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import MapView, { Marker } from "react-native-maps";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import usa from "../../assets/usa.png";
+import ua from "../../assets/ua.png";
 
 import { logout } from "../../redux/auth/authOperations";
 import { getUser } from "../../redux/auth/authSelectors";
+import { useTranslation } from "react-i18next";
+import i18n from "../../i18next/i18n";
 
 const About = () => {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
   const handleLogout = () => {
     dispatch(logout());
+  };
+
+  const changeLanguage = async (lng) => {
+    await AsyncStorage.setItem("language", lng);
+    i18n.changeLanguage(lng);
+    setSelectedLanguage(lng);
   };
 
   const name = user && user.name ? user.name : "Guest";
@@ -34,8 +48,22 @@ const About = () => {
             />
             <Text style={styles.headerTitle}>{name}</Text>
           </View>
+          <View style={styles.languageContainer}>
+            <TouchableOpacity
+              onPress={() => changeLanguage("en")}
+              style={styles.languageButton}
+            >
+              <Image source={usa} style={styles.flag} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => changeLanguage("uk")}
+              style={styles.languageButton}
+            >
+              <Image source={ua} style={styles.flag} />
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity onPress={handleLogout} style={styles.headerBtn}>
-            <Text style={styles.headerBtnT}>Logout</Text>
+            <Text style={styles.headerBtnT}>{t("Log out")}</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -47,54 +75,45 @@ const About = () => {
               marginBottom: 10,
             }}
           >
-            Online Bookstore
+            {t("Online Bookstore")}
           </Text>
           <Text style={styles.description}>
-            At Book Store, we invite you to embark on a journey through the
-            enchanting realms of literature, where every page unfolds a new
-            adventure. Our online bookstore is a haven for book enthusiasts,
-            offering an extensive and diverse collection that caters to every
-            taste and preference.
+            {t(
+              "At Book Store, we invite you to embark on a journey through the enchanting realms of literature, where every page unfolds a new adventure. Our online bookstore is a haven for book enthusiasts, offering an extensive and diverse collection that caters to every taste and preference."
+            )}
           </Text>
           <Text style={styles.description}>
-            📚 Explore a World of Books: From timeless classics that have shaped
-            generations to the latest page-turners captivating readers
-            worldwide, our curated selection spans various genres, ensuring
-            there's something for everyone. Immerse yourself in fiction, get
-            inspired by non-fiction, or let the little ones discover magical
-            worlds in our children's section.
+            {t(
+              "Explore a World of Books: From timeless classics that have shaped generations to the latest page-turners captivating readers worldwide, our curated selection spans various genres, ensuring there's something for everyone. Immerse yourself in fiction, get inspired by non-fiction, or let the little ones discover magical worlds in our children's section."
+            )}
           </Text>
           <Text style={styles.description}>
-            🏡 Visit Our Imaginary Storefront: While our physical address is
-            purely fictional, the warmth and joy of exploring our virtual
-            bookstore are very real. Wander through the digital aisles, browse
-            book covers, and read engaging summaries - all from the comfort of
-            your home.
+            {t(
+              "Visit Our Imaginary Storefront: While our physical address is purely fictional, the warmth and joy of exploring our virtual bookstore are very real. Wander through the digital aisles, browse book covers, and read engaging summaries - all from the comfort of your home."
+            )}
           </Text>
           <Text style={styles.description}>
-            📞 Customer Support: Have a question or need assistance? Our
-            friendly and fictional customer support team is just a phone call
-            away.
+            {t(
+              "Customer Support: Have a question or need assistance? Our friendly and fictional customer support team is just a phone call away."
+            )}
           </Text>
           <Text style={styles.description}>
-            Dial 555-123-4567 for personalized assistance or drop us an email at
-            info@bookhaven.com.
+            {t(
+              "Dial 555-123-4567 for personalized assistance or drop us an email at info@bookhaven.com."
+            )}
           </Text>
           <Text style={styles.description}>
-            🌐 Online Ordering Made Easy: Experience the convenience of online
-            shopping with our user-friendly platform. Browse, add to your cart,
-            and securely check out - all in a few clicks. We ship to imaginary
-            locations worldwide!
+            {t(
+              "Online Ordering Made Easy: Experience the convenience of online shopping with our user-friendly platform. Browse, add to your cart, and securely check out - all in a few clicks. We ship to imaginary locations worldwide!"
+            )}
           </Text>
           <Text style={styles.description}>
-            Whether you're an avid reader, a casual browser, or a gift-giver in
-            search of the perfect literary present, Book Haven is your
-            destination for literary bliss. Discover the joy of reading with us
-            – where every book is an adventure waiting to be unfolded. Happy
-            reading! 📖✨
+            {t(
+              "Whether you're an avid reader, a casual browser, or a gift-giver in search of the perfect literary present, Book Haven is your destination for literary bliss. Discover the joy of reading with us – where every book is an adventure waiting to be unfolded. Happy reading!"
+            )}
           </Text>
           <Text style={styles.description}>
-            "We are in the city of Lviv, Ukraine."
+            {t('"We are in the city of Lviv, Ukraine."')}
           </Text>
           <View
             style={{
@@ -118,7 +137,7 @@ const About = () => {
             >
               <Marker
                 coordinate={{ latitude: 49.8419, longitude: 24.0315 }}
-                title="Our office"
+                title={t("Our office")}
               />
             </MapView>
           </View>
@@ -165,7 +184,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#fff",
     borderRadius: 20,
-    marginRight: 10,
+    marginRight: 30,
   },
   headerBtnT: {
     color: "#fff",
@@ -177,6 +196,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     backgroundColor: "#F3D88E",
+    marginLeft: 20,
   },
   description: {
     fontSize: 13,
@@ -186,6 +206,18 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginBottom: 10,
     textAlign: "justify",
+  },
+  languageContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginRight: 10,
+  },
+  languageButton: {
+    marginHorizontal: 3,
+  },
+  flag: {
+    width: 25,
+    height: 25,
   },
 });
 
