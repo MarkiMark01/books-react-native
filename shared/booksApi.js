@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://66068cdbbe53febb857e25cd.mockapi.io/api/b/books",
+  baseURL: "https://65636629ee04015769a7273d.mockapi.io/books/books",
 });
 
 export const getNewBooks = async () => {

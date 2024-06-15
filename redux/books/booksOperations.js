@@ -30,7 +30,7 @@ export const fetchCart = createAsyncThunk(
   async function (_, { rejectWithValue }) {
     try {
       const response = await fetch(
-        "https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart"
+        "https://65636629ee04015769a7273d.mockapi.io/books/cart"
       );
 
       if (!response.ok) {
@@ -50,7 +50,7 @@ export const addNewCart = createAsyncThunk(
     // accept book as a parameter
     try {
       const response = await fetch(
-        "https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart",
+        "https://65636629ee04015769a7273d.mockapi.io/books/cart",
         {
           method: "POST",
           headers: {
@@ -75,7 +75,7 @@ export const deleteCart = createAsyncThunk(
   async function (id, { rejectWithValue, dispatch }) {
     try {
       const response = await fetch(
-        `https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart/${id}`,
+        `https://65636629ee04015769a7273d.mockapi.io/books/cart/${id}`,
 
         {
           method: "DELETE",
@@ -96,7 +96,7 @@ export const clearAllCart = createAsyncThunk(
   async (_, { rejectWithValue, dispatch }) => {
     try {
       const response = await fetch(
-        "https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart"
+        "https://65636629ee04015769a7273d.mockapi.io/books/cart"
       );
       if (!response.ok) {
         throw new Error("Server Error!");
@@ -106,7 +106,7 @@ export const clearAllCart = createAsyncThunk(
       await Promise.all(
         data.map(async (book) => {
           const deleteResponse = await fetch(
-            `https://66068cdbbe53febb857e25cd.mockapi.io/api/b/cart/${book.id}`,
+            `https://65636629ee04015769a7273d.mockapi.io/books/cart/${book.id}`,
             {
               method: "DELETE",
             }
