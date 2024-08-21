@@ -12,7 +12,11 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
+<<<<<<< HEAD
 import { useTranslation } from "react-i18next";
+=======
+import { useTranslation } from "react-i18next"; // Імпортуємо useTranslation
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
 
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
@@ -64,7 +68,11 @@ const UniqueBook = ({ navigation }) => {
           title: uniqueBook.title,
           price: uniqueBook.price,
           quantity: quantity,
+<<<<<<< HEAD
           totalSum: totalPrice,
+=======
+          totalPrice: totalPrice,
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
         })
       );
       setQuantity(1);
@@ -153,7 +161,11 @@ const UniqueBook = ({ navigation }) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           refreshControl={
+<<<<<<< HEAD
             <RefreshControl refreshing={isLoading} onRefresh={() => {}} />
+=======
+            <RefreshControl refreshing={isLoading} onRefresh={() => { }} />
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
           }
           extraData={[quantity, totalPrice]}
         />

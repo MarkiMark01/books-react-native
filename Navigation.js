@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+<<<<<<< HEAD
 import {
   MaterialIcons,
   Feather,
@@ -9,18 +10,38 @@ import {
   FontAwesome,
 } from "@expo/vector-icons";
 
+=======
+import { MaterialIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+
+import useAuth from "./shared/hooks/useAuth";
+import { Login } from "./screens/auth/Login";
+import { Register } from "./screens/auth/Register";
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
 import Books from "./screens/books/book/Books";
 import Cart from "./screens/books/cart/Cart";
 import About from "./screens/books/About";
 import UniqueBook from "./screens/books/bookId/UniqueBook";
+<<<<<<< HEAD
 import Auth from "./screens/auth/Auth";
 
 const authRoute = createStackNavigator();
+=======
+
+const authRoute = createStackNavigator();
+const AuthStack = createStackNavigator();
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
 const MainTab = createBottomTabNavigator();
 
 const tabBarOptions = {
   tabBarShowLabel: false,
   tabBarStyle: { display: "flex", backgroundColor: "#2fc5f9" },
+<<<<<<< HEAD
+=======
+  // tabBarActiveTintColor: "#F3D88E",
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
 };
 
 const screenOptions = {
@@ -42,6 +63,7 @@ const screenOptions = {
   },
 };
 
+<<<<<<< HEAD
 const toggleRoute = (session) => {
   if (!session) {
     return (
@@ -52,6 +74,23 @@ const toggleRoute = (session) => {
           options={{ headerShown: false }}
         />
       </authRoute.Navigator>
+=======
+const toggleRoute = (isLogin) => {
+  if (!isLogin) {
+    return (
+      <AuthStack.Navigator>
+        <AuthStack.Screen
+          name={"Login"}
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <AuthStack.Screen
+          name={"Register"}
+          component={Register}
+          options={{ headerShown: false }}
+        />
+      </AuthStack.Navigator>
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
     );
   }
   return (
@@ -120,8 +159,24 @@ const toggleRoute = (session) => {
   );
 };
 
+<<<<<<< HEAD
 const Navigation = ({ session }) => {
   return <NavigationContainer>{toggleRoute(session)}</NavigationContainer>;
 };
 
 export default Navigation;
+=======
+export const Navigation = () => {
+  const isLogin = useAuth();
+
+  return (
+    <NavigationContainer>
+      <authRoute.Navigator>
+        <authRoute.Screen name="AuthScreens" options={{ headerShown: false }}>
+          {() => toggleRoute(isLogin)}
+        </authRoute.Screen>
+      </authRoute.Navigator>
+    </NavigationContainer>
+  );
+};
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa

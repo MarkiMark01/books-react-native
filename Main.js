@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import * as Font from "expo-font";
@@ -65,3 +66,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+=======
+import { Navigation } from "./Navigation";
+import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { fetchCurrent } from "./redux/auth/authOperations";
+
+export const Main = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrent());
+  }, [dispatch]);
+
+  return <Navigation />;
+};
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa

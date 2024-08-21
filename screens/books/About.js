@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
 import {
   StyleSheet,
   Text,
@@ -6,6 +10,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+<<<<<<< HEAD
   Button,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
@@ -14,22 +19,50 @@ import { supabase } from "../../lib/supabase";
 
 import usa from "../../assets/usa.png";
 import ua from "../../assets/ua.png";
+=======
+} from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import MapView, { Marker } from "react-native-maps";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import usa from "../../assets/usa.png";
+import ua from "../../assets/ua.png";
+
+import { logout } from "../../redux/auth/authOperations";
+import { getUser } from "../../redux/auth/authSelectors";
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18next/i18n";
 
 const About = () => {
+<<<<<<< HEAD
   const { t } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
+=======
+  const user = useSelector(getUser);
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
   const changeLanguage = async (lng) => {
     await AsyncStorage.setItem("language", lng);
     i18n.changeLanguage(lng);
     setSelectedLanguage(lng);
   };
 
+<<<<<<< HEAD
   const handleSignOut = async () => {
     await supabase.auth.signOut();
   };
+=======
+  const name = user && user.name ? user.name : "Guest";
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -40,6 +73,10 @@ const About = () => {
               source={require("../../assets/pngegg.png")}
               style={styles.image}
             />
+<<<<<<< HEAD
+=======
+            <Text style={styles.headerTitle}>{name}</Text>
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
           </View>
           <View style={styles.languageContainer}>
             <TouchableOpacity
@@ -55,8 +92,13 @@ const About = () => {
               <Image source={ua} style={styles.flag} />
             </TouchableOpacity>
           </View>
+<<<<<<< HEAD
           <TouchableOpacity onPress={handleSignOut} style={styles.headerBtn}>
             <Text style={styles.headerBtnT}>{t("Sign out")}</Text>
+=======
+          <TouchableOpacity onPress={handleLogout} style={styles.headerBtn}>
+            <Text style={styles.headerBtnT}>{t("Log out")}</Text>
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
           </TouchableOpacity>
         </View>
         <View>
@@ -145,6 +187,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#e1eff9",
+<<<<<<< HEAD
+=======
+    // marginTop: 10,
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
   },
   header: {
     width: "100%",
@@ -188,7 +234,11 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     backgroundColor: "#F3D88E",
+<<<<<<< HEAD
     marginLeft: 15,
+=======
+    marginLeft: 20,
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
   },
   description: {
     fontSize: 13,
@@ -211,6 +261,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
+<<<<<<< HEAD
   headerBtn: {
     justifyContent: "center",
     alignItems: "center",
@@ -226,6 +277,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "mt-m",
   },
+=======
+>>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
 });
 
 export default About;
