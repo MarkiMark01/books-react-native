@@ -9,10 +9,35 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/vector-icons": "^14.0.0",
+    "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-navigation/bottom-tabs": "^6.6.1",
+    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/stack": "^6.4.1",
+    "@reduxjs/toolkit": "^2.2.7",
+    "@rneui/themed": "^4.0.0-rc.8",
+    "@supabase/supabase-js": "^2.45.1",
+    "axios": "^1.6.8",
     "expo": "~51.0.28",
+    "expo-constants": "^16.0.2",
     "expo-status-bar": "~1.12.1",
+    "i18next": "^23.11.5",
+    "intl": "^1.2.5",
+    "intl-pluralrules": "^2.0.1",
+    "nanoid": "^5.0.6",
+    "plurals-cldr": "^2.0.1",
     "react": "18.2.0",
-    "react-native": "0.74.5"
+    "react-dom": "18.2.0",
+    "react-i18next": "^14.1.2",
+    "react-native": "0.74.5",
+    "react-native-dotenv": "^3.4.11",
+    "react-native-gesture-handler": "~2.16.1",
+    "react-native-maps": "1.14.0",
+    "react-native-safe-area-context": "^4.10.1",
+    "react-native-screens": "^3.31.1",
+    "react-native-web": "~0.19.10",
+    "react-redux": "^9.1.0",
+    "expo-updates": "~0.25.22"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
