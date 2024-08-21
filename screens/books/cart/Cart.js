@@ -46,11 +46,7 @@ const Cart = () => {
   }, [dispatch]);
 
   const totalAllSum = cart
-<<<<<<< HEAD
     .reduce((sum, item) => sum + parseFloat(item.totalSum), 0)
-=======
-    .reduce((sum, item) => sum + parseFloat(item.totalPrice), 0)
->>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
     .toFixed(2);
 
   const renderItem = ({ item }) => (
@@ -84,11 +80,7 @@ const Cart = () => {
         <View style={styles.totalSum}>
           <Text style={styles.totalSumP}>${item.price}</Text>
           <Text style={styles.totalSumQ}>{item.quantity}</Text>
-<<<<<<< HEAD
           <Text style={styles.totalSumS}>${item.totalSum}</Text>
-=======
-          <Text style={styles.totalSumS}>${item.totalPrice}</Text>
->>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
         </View>
       </View>
       <View style={styles.foot}></View>
@@ -110,11 +102,7 @@ const Cart = () => {
                 renderItem={renderItem}
                 keyExtractor={(item, index) => `${item.id}-${index}`}
                 refreshControl={
-<<<<<<< HEAD
                   <RefreshControl refreshing={isLoading} onRefresh={() => {}} />
-=======
-                  <RefreshControl refreshing={isLoading} onRefresh={() => { }} />
->>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
                 }
               />
               <View style={styles.endBlock}>

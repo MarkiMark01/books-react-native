@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import * as Font from "expo-font";
 import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
@@ -31,6 +30,11 @@ export default function Main() {
       const {
         data: { session },
       } = await supabase.auth.getSession();
+      if (!session) {
+        Alert.alert(
+          "The session is invalid or timed out. Please sign in again."
+        );
+      }
       setSession(session);
     };
     fetchSession();
@@ -66,19 +70,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-=======
-import { Navigation } from "./Navigation";
-import { useDispatch } from "react-redux";
-import React, { useEffect } from "react";
-import { fetchCurrent } from "./redux/auth/authOperations";
-
-export const Main = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCurrent());
-  }, [dispatch]);
-
-  return <Navigation />;
-};
->>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa

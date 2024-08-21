@@ -102,11 +102,7 @@ const Books = ({ navigation }) => {
             showsVerticalScrollIndicator={false}
           />
         )}
-<<<<<<< HEAD
         <StatusBar barStyle="light-content" backgroundColor="#001838" />
-=======
-        <StatusBar theme="auto" />
->>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
       </View>
     </TouchableWithoutFeedback>
   );
