@@ -121,7 +121,7 @@ const About = ({ navigation }) => {
             )}
           </Text>
           <Text style={styles.description}>
-            {t('"We are in the city of Lviv, Ukraine."')}
+            {t('"We are located in the city of Lviv, Ukraine."')}
           </Text>
           <View
             style={{
