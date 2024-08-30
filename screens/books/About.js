@@ -16,7 +16,7 @@ import ua from "../../assets/ua.png";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18next/i18n";
 
-const About = ({ navigation }) => {
+const About = () => {
   const { t } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
   const [userName, setUserName] = useState("");
@@ -121,7 +121,7 @@ const About = ({ navigation }) => {
             )}
           </Text>
           <Text style={styles.description}>
-            {t('"We are located in the city of Lviv, Ukraine."')}
+            {t("We are located in the city of Lviv, Ukraine.")}
           </Text>
           <View
             style={{

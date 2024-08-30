@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -13,11 +12,5 @@ module.exports = function (api) {
         },
       ],
     ],
-=======
-module.exports = function(api) {
-  api.cache(true);
-  return {
-    presets: ['babel-preset-expo'],
->>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
   };
 };

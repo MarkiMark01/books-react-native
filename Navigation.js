@@ -7,14 +7,12 @@ import {
   Entypo,
   FontAwesome,
 } from "@expo/vector-icons";
-import AntDesign from "@expo/vector-icons/AntDesign";
 
 import Books from "./screens/books/book/Books";
 import Cart from "./screens/books/cart/Cart";
 import About from "./screens/books/About";
 import UniqueBook from "./screens/books/bookId/UniqueBook";
 import Auth from "./screens/auth/Auth";
-import AccountPage from "./screens/AccountPage";
 
 const authRoute = createStackNavigator();
 const MainTab = createBottomTabNavigator();
@@ -117,21 +115,6 @@ const toggleRoute = (session) => {
           headerTitle: "About",
         }}
       />
-      {/* <MainTab.Screen
-        name="Account"
-        component={AccountPage}
-        options={{
-          ...screenOptions,
-          tabBarIcon: ({ size, color, focused }) => (
-            <AntDesign
-              name="setting"
-              size={size}
-              color={focused ? "#fff" : "#001838"}
-            />
-          ),
-          headerTitle: "Settings",
-        }}
-      /> */}
     </MainTab.Navigator>
   );
 };

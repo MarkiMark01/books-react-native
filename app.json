@@ -25,20 +25,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-<<<<<<< HEAD
     },
     "extra": {
       "eas": {
         "projectId": "7503b3e2-e8c3-4888-bfac-9fcbefbc21f1"
       }
     },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+    "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/7503b3e2-e8c3-4888-bfac-9fcbefbc21f1"
-=======
->>>>>>> 52ab493bda8fd41e9eaf0887d9f841db4e188caa
-    }
+    },
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ]
   }
 }

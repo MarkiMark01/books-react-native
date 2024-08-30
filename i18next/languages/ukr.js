@@ -3,9 +3,9 @@ export const ukr = {
     translation: {
       "Whether you're an avid reader, a casual browser, or a gift-giver in search of the perfect literary present, Book Haven is your destination for literary bliss. Discover the joy of reading with us – where every book is an adventure waiting to be unfolded. Happy reading!":
         "Незалежно від того, чи ви завзятий читач, випадковий браузер чи дарувальник подарунків у пошуках ідеального літературного подарунка, Book Haven — ваше місце для літературного щастя. Відкрийте для себе радість читання разом з нами, де кожна книга – це пригода, яка чекає, щоб її розгорнули. Приємного читання!",
-      "We are located in the city of Lviv, Ukraine.":
-        "Ми знаходимося в місті Львів, Україна",
       "Search by book title": "Пошук за назвою книги",
+      "We are located in the city of Lviv, Ukraine.":
+        "Ми знаходимося в місті Львів, Україна.",
       "All books": "Всі книги",
       "from $0 to $15": "від $0 до $15",
       "from $15 to $30": "від $15 до $30",
@@ -20,7 +20,7 @@ export const ukr = {
       Book: "Книга",
       Cart: "Кошик",
       About: "Про нас",
-      "Log out": "Вийти",
+      "Sign out": "Вийти",
       "Log in": "Увійти",
       "Sign up": "Реєстрація",
       "Online Bookstore": "Онлайн Книжковий Магазин",
@@ -151,7 +151,7 @@ export const ukr = {
         "Перенесіть свої навички веб-розробки від веб-переглядача до сервера за допомогою Node — і навчіться писати швидкі, високомасштабовані мережеві програми на цій платформі на основі JavaScript. Це практичне видання, оновлене до останніх випусків Node Long Term Support (LTS) і Node Current (6.0), допоможе вам освоїти основні основи Node і отримати досвід роботи з кількома вбудованими та доданими модулями. Ознайомтеся з керованою подіями асинхронною моделлю введення-виведення Node для розробки додатків із інтенсивним об’ємом даних, до яких часто звертаються, але є простими в обчисленні. Якщо вам зручно працювати з JavaScript, ця книга містить багато прикладів програмування та розгортання, які допоможуть вам скористатися перевагами серверної розробки за допомогою Node.",
       "If you know how to use JavaScript in the browser, you already have the skills you need to put JavaScript to work on back-end servers with Node. This hands-on book shows you how to use this popular JavaScript platform to create simple server applications, communicate with the client, build dynamic pages, work with data, and tackle other tasks. Although Node has a complete library of developer-contributed modules to automate server-side development, this book will show you how to program with Node on your own, so you truly understand the platform. Discover firsthand how well Node works as a web server, and how easy it is to learn and use.":
         "Якщо ви знаєте, як використовувати JavaScript у веб-переглядачі, у вас уже є навички, необхідні для роботи JavaScript на внутрішніх серверах із Node. У цій практичній книзі показано, як використовувати цю популярну платформу JavaScript для створення простих серверних програм, спілкування з клієнтом, створення динамічних сторінок, роботи з даними та вирішення інших завдань. Незважаючи на те, що Node має повну бібліотеку модулів, наданих розробниками для автоматизації розробки на стороні сервера, ця книга покаже вам, як програмувати за допомогою Node самостійно, щоб ви справді зрозуміли платформу. Дізнайтеся з перших вуст, наскільки добре Node працює як веб-сервер, і наскільки його легко освоїти та використовувати.",
+      "Already have an account?": "Вже є аккаунт?",
     },
   },
-}
-
+};

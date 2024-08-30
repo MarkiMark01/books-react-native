@@ -125,14 +125,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#F3D88E",
     borderRadius: 20,
-    // shadowColor: "#2fc5f9",
-    // shadowOffset: {
-    //   width: 5,
-    //   height: 5,
-    // },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 3.84,
-    // elevation: 5, // Для Android
   },
   image: {
     width: 265,

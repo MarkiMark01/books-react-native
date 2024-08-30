@@ -3,9 +3,9 @@ export const eng = {
     translation: {
       "Whether you're an avid reader, a casual browser, or a gift-giver in search of the perfect literary present, Book Haven is your destination for literary bliss. Discover the joy of reading with us – where every book is an adventure waiting to be unfolded. Happy reading!":
         "Whether you're an avid reader, a casual browser, or a gift-giver in search of the perfect literary present, Book Haven is your destination for literary bliss. Discover the joy of reading with us – where every book is an adventure waiting to be unfolded. Happy reading!",
+      "Search by book title": "Search by book title",
       "We are located in the city of Lviv, Ukraine.":
         "We are located in the city of Lviv, Ukraine.",
-      "Search by book title": "Search by book title",
       "All books": "All books",
       "from $0 to $15": "from $0 to $15",
       "from $15 to $30": "from $15 to $30",
@@ -20,7 +20,7 @@ export const eng = {
       Book: "Book",
       Cart: "Cart",
       About: "About",
-      "Log out": "Log out",
+      "Sign out": "Sign out",
       "Log in": "Log in",
       "Sign up": "Sign up",
       Register: "Register",
@@ -152,6 +152,7 @@ export const eng = {
         "Take your web development skills from browser to server with Node—and learn how to write fast, highly scalable network applications on this JavaScript-based platform. Updated for the latest Node Long Term Support (LTS) and Node Current (6.0) releases, this hands-on edition helps you master Node’s core fundamentals and gain experience with several built-in and contributed modules. Get up to speed on Node’s event-driven, asynchronous I/O model for developing data-intensive applications that are frequently accessed but computationally simple. If you’re comfortable working with JavaScript, this book provides many programming and deployment examples to help you take advantage of server-side development with Node.",
       "If you know how to use JavaScript in the browser, you already have the skills you need to put JavaScript to work on back-end servers with Node. This hands-on book shows you how to use this popular JavaScript platform to create simple server applications, communicate with the client, build dynamic pages, work with data, and tackle other tasks. Although Node has a complete library of developer-contributed modules to automate server-side development, this book will show you how to program with Node on your own, so you truly understand the platform. Discover firsthand how well Node works as a web server, and how easy it is to learn and use.":
         "If you know how to use JavaScript in the browser, you already have the skills you need to put JavaScript to work on back-end servers with Node. This hands-on book shows you how to use this popular JavaScript platform to create simple server applications, communicate with the client, build dynamic pages, work with data, and tackle other tasks. Although Node has a complete library of developer-contributed modules to automate server-side development, this book will show you how to program with Node on your own, so you truly understand the platform. Discover firsthand how well Node works as a web server, and how easy it is to learn and use.",
+      "Already have an account?": "Already have an account?",
     },
   },
 };
