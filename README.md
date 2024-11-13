@@ -1,4 +1,4 @@
 Developed a full-featured online bookstore available on mobile (React Native) platforms, with built-in user authentication. The application allows users to browse a catalog of books, view detailed descriptions, and manage a shopping cart. Authorized users can add books to their cart, seamlessly navigate between internal pages, and proceed with purchases. The project includes a fully responsive design and supports multilingual functionality, ensuring a consistent user experience across both platforms.
 Technologies used for development include: JavaScript, React, Redux (Toolkit), HTML, SCSS, and Responsive Web Design with language switching support.
 Deployed Version: 
-https://expo.dev/preview/update?message=update%20i%2018n&updateRuntimeVersion=1.0.0&createdAt=2024-08-22T22%3A08%3A22.965Z&slug=exp&projectId=7503b3e2-e8c3-4888-bfac-9fcbefbc21f1&group=449c8423-7464-4352-bc40-726b2ab376f0
+https://expo.dev/preview/update?message=updated%20sdk52&updateRuntimeVersion=1.0.0&createdAt=2024-11-13T18%3A15%3A45.372Z&slug=exp&projectId=7503b3e2-e8c3-4888-bfac-9fcbefbc21f1&group=533d2510-570d-4217-ab74-7ae0233fe362
